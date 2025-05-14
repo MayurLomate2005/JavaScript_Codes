@@ -59,3 +59,9 @@ copy but in heap memory the value assigned of any non-primitive dataType it is g
 copy is generated . 
 */
 
+// Learn all the functions of String : Which is important .
+const Name = new String("mayur");
+for(let i = 0 ; i<5;i++){
+    console.log(`the word is ${Name[i]}`);
+    
+}
