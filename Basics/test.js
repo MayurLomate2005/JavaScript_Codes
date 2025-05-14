@@ -5,3 +5,12 @@ let pass = "12234"
 
 console.table([accountId,accountName,accountEmail,pass]);
 // prefer not use var instead of use let , const
+
+
+//conversion of datatype 
+let value = "45"
+console.log(typeof value)  // its output is string
+let conversion = Number(value);
+console.log(conversion) // its 45 means it convert string into number but if we try for undefined it is undefined and for null its Nan(Not a Number)
+// important Note : When You try for conversion of a one datatype into another check the value sometimes it gives NAN , which can lead to confusion 
+//further . 
