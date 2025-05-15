@@ -1,67 +1,117 @@
-const accountId = 1233
-let accountName = " Mayur Lomate"
-var accountEmail = "mayurlomate2005@gmail.com"
-let pass = "12234"
+// -----------------------------
+// VARIABLE DECLARATION
+// -----------------------------
+const accountId = 1233;
+let accountName = "Mayur Lomate";
+let accountEmail = "mayurlomate2005@gmail.com";
+let password = "12234";
 
-console.table([accountId,accountName,accountEmail,pass]);
-// prefer not use var instead of use let , const
+console.table([accountId, accountName, accountEmail, password]);
+// Note: Prefer `let` and `const` over `var` due to block scope behavior.
 
-/******************************************************************************************** */
 
-//conversion of datatype 
-let value = "45"
-console.log(typeof value)  // its output is string
+// -----------------------------
+// TYPE CONVERSION
+// -----------------------------
+let value = "45";
+console.log(typeof value);  // string
+
 let conversion = Number(value);
-console.log(conversion) // its 45 means it convert string into number but if we try for undefined it is undefined and for null its Nan(Not a Number)
-// important Note : When You try for conversion of a one datatype into another check the value sometimes it gives NAN , which can lead to confusion 
-//further . 
+console.log(conversion);    // 45
+
+console.log(Number(undefined)); // NaN
+console.log(Number(null));      // 0
+// Always validate before converting types.
 
 
-//*****************************************************************************************88 */
+// -----------------------------
+// DATA TYPES
+// -----------------------------
+// Primitive: Number, String, Boolean, Null, Undefined, Symbol, BigInt
+// Non-Primitive: Object, Array, Function
 
-
-/*
-in javscript the DataTypes Used : Primitive and non primitive
-primitive : Number , String , Boolean , Null , Undefined and Symbol 
-Non-Primitive : Array , Object , Function 
-*/
-
-// Syntax of it : 
-let Array = ["Mayur" , "Babasaheb ","Lomate"]; // This is Array 
-
-let Function = function(){
-
+let myArray = ["Mayur", "Babasaheb", "Lomate"];
+let myFunction = function () {
     console.log("Good Morning Guys");
-    
-}
+};
+let myObject = {
+    name: "Mayur",
+    age: 20,
+};
 
-let obj = {
-    name : " mayur ",
-    age :  20,
-}
-
-console.table([Array , obj]);
-Function();
+console.table([myArray, myObject]);
+myFunction();
 
 
-// This is How the Reference Datatype are worked .
+// -----------------------------
+// MEMORY ALLOCATION
+// -----------------------------
+// Stack: Primitive types (value is copied)
+let a = 10;
+let b = a;
+b = 20;
+console.log(a); // 10
+
+// Heap: Non-primitive types (reference is copied)
+let obj1 = { name: "Mayur" };
+let obj2 = obj1;
+obj2.name = "Lomate";
+console.log(obj1.name); // Lomate
 
 
-//**************************************************************************** */
+// -----------------------------
+// STRING METHODS
+// -----------------------------
+let str = "  Hello JavaScript World!  ";
 
-// Memory Allocation of DataTypes
+console.log(str.length);                  // Length
+console.log(str.toUpperCase());          // To uppercase
+console.log(str.toLowerCase());          // To lowercase
+console.log(str.trim());                 // Trim whitespace
+console.log(str.includes("JavaScript")); // Check substring
+console.log(str.replace("World", "User")); // Replace text
+console.log(str.slice(2, 10));           // Slice from index 2 to 9
+console.log(str.split(" "));             // Split into array by space
+console.log(str.charAt(6));              // Character at index
+console.log(str.indexOf("JavaScript"));  // Index of substring
+console.log(`Length is: ${str.length}`); // Template literal
 
-/*
-the memory allocation done like this when u declare any primitive dataType the memory is allcated inside : STACK MEMORY
-when the Non-Primitive dataType is allocated it is allocated inside : HEAP MEMORY 
-the difference between them is in stack mem : when the value of one varible is given to another variable it will give as a 
-copy but in heap memory the value assigned of any non-primitive dataType it is get a reference of original values the code changes in original no 
-copy is generated . 
-*/
 
-// Learn all the functions of String : Which is important .
-const Name = new String("mayur");
-for(let i = 0 ; i<5;i++){
-    console.log(`the word is ${Name[i]}`);
-    
-}
+// -----------------------------
+// MATH METHODS
+// -----------------------------
+console.log(Math.abs(-7));         // Absolute value: 7
+console.log(Math.round(4.6));      // Round: 5
+console.log(Math.ceil(4.2));       // Ceiling: 5
+console.log(Math.floor(4.9));      // Floor: 4
+console.log(Math.min(4, 7, 2, 9)); // Minimum: 2
+console.log(Math.max(4, 7, 2, 9)); // Maximum: 9
+console.log(Math.random());        // Random number (0 to <1)
+console.log(Math.floor(Math.random() * 10) + 1); // Random 1–10
+console.log(Math.pow(2, 3));       // Power: 8
+console.log(Math.sqrt(49));        // Square root: 7
+
+
+// -----------------------------
+// DATE & TIME METHODS
+// -----------------------------
+let currentDate = new Date();
+console.log(currentDate);                     // Full date object
+console.log(currentDate.toString());          // String format
+console.log(currentDate.toDateString());      // Date only
+console.log(currentDate.toLocaleDateString()); // Local date format
+console.log(currentDate.toLocaleTimeString()); // Local time format
+console.log(currentDate.getFullYear());       // Year
+console.log(currentDate.getMonth() + 1);      // Month (0-indexed)
+console.log(currentDate.getDate());           // Day of the month
+console.log(currentDate.getHours());          // Hour
+console.log(currentDate.getMinutes());        // Minutes
+console.log(currentDate.getSeconds());        // Seconds
+console.log(currentDate.getTime());           // Time in ms since 1970
+
+let customDate = new Date("2025-01-01");
+console.log(customDate.toDateString());       // Custom date
+
+// Tip: Use toISOString() when working with backend or databases
+console.log(currentDate.toISOString());
+
