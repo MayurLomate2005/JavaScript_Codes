@@ -1,211 +1,169 @@
-// // // ------------------------------------
-// // // ARRAY BASICS
-// // // ------------------------------------
-// // const arr = [1, 2, 3, 4, 5];
-// // console.log("Original Array:", arr);
+/* -------------------------------------------------
+   JAVASCRIPT DEMO – ARRAYS, OBJECTS & FUNCTIONS
+   -------------------------------------------------
+   Sections:
+     1. Array basics & methods
+     2. Object creation & manipulation
+     3. Nested objects and merging
+     4. Function patterns (rest, params, etc.)
+     5. Arrow vs. regular functions and `this`
+------------------------------------------------- */
 
-// // // ------------------------------------
-// // // ARRAY METHODS
-// // // ------------------------------------
+/* -------------------------------------------------
+   1. ARRAY BASICS & METHODS
+------------------------------------------------- */
+(() => {
+  const arr = [1, 2, 3, 4, 5];
+  console.log("Original Array:", arr);
 
-// // // ✅ push() – adds element at the end
-// // arr.push(6);
-// // console.log("After push(6):", arr); // [1,2,3,4,5,6]
+  // push / pop
+  arr.push(6);                    // [1,2,3,4,5,6]
+  arr.pop();                      // [1,2,3,4,5]
 
-// // // ✅ pop() – removes last element
-// // arr.pop();
-// // console.log("After pop():", arr); // [1,2,3,4,5]
+  // unshift / shift
+  arr.unshift(0);                 // [0,1,2,3,4,5]
+  arr.shift();                    // [1,2,3,4,5]
 
-// // // ✅ unshift() – adds element at the beginning
-// // arr.unshift(0);
-// // console.log("After unshift(0):", arr); // [0,1,2,3,4,5]
+  // includes / indexOf
+  console.log("Includes 3?", arr.includes(3)); // true
+  console.log("Index of 4:", arr.indexOf(4));  // 3
 
-// // // ✅ shift() – removes first element
-// // arr.shift();
-// // console.log("After shift():", arr); // [1,2,3,4,5]
+  // join
+  console.log("Joined with -:", arr.join("-")); // "1-2-3-4-5"
 
-// // // ✅ includes() – checks if element exists
-// // console.log("Includes 3?", arr.includes(3)); // true
+  // slice / splice
+  console.log("Slice(1,4):", arr.slice(1, 4));  // [2,3,4]
+  const removed = arr.splice(2, 1, 99);         // remove 1, insert 99
+  console.log("After splice:", arr, "Removed:", removed); // [1,2,99,4,5] [3]
 
-// // // ✅ indexOf() – returns index of element
-// // console.log("Index of 4:", arr.indexOf(4)); // 3
+  // concat / spread
+  const arr2 = [6, 7];
+  console.log("Concat:", arr.concat(arr2));             // [1,2,99,4,5,6,7]
+  console.log("Spread Combined:", [...arr, ...arr2]);   // same via spread
 
-// // // ✅ join() – joins array into string
-// // const joined = arr.join("-");
-// // console.log("Joined with -:", joined); // "1-2-3-4-5"
+  // flat
+  const nested = [1, 2, [3, 4], [5, [6]]];
+  console.log("Flat(1):", nested.flat(1));  // [1,2,3,4,5,[6]]
+  console.log("Flat(2):", nested.flat(2));  // [1,2,3,4,5,6]
 
-// // // ✅ slice() – returns shallow copy of part of array
-// // const sliced = arr.slice(1, 4);
-// // console.log("Slice(1,4):", sliced); // [2,3,4]
+  // Array.from / Array.of
+  console.log("Array from string:", Array.from("Mayur"));  // ['M','a','y','u','r']
+  console.log("Array.of:", Array.of(10, 20, 30));          // [10,20,30]
+})();
 
-// // // ✅ splice() – modifies original array (add/remove elements)
-// // const spliced = arr.splice(2, 1, 99); // at index 2, remove 1, add 99
-// // console.log("After splice(2,1,99):", arr); // [1,2,99,4,5]
-// // console.log("Removed item(s):", spliced); // [3]
+/* -------------------------------------------------
+   2. OBJECT CREATION & MANIPULATION
+------------------------------------------------- */
+(() => {
+  const mysym = Symbol("Key1");
+  const user = {
+    name: "Mayur",
+    age: 22,
+    [mysym]: "new_Symbol",
+    location: "Nagar",
+    loginStatus: "Active",
+    greet() {
+      console.log("Good Morning");
+    },
+  };
 
-// // // ✅ concat() – merges arrays, returns new
-// // const arr2 = [6, 7];
-// // const combined = arr.concat(arr2);
-// // console.log("Concat arr2:", combined); // [1,2,99,4,5,6,7]
+  // update values
+  user.location = "Pune";
+  user.loginStatus = "Inactive";
 
-// // // ✅ spread (...) – modern way to combine arrays
-// // const spreadCombined = [...arr, ...arr2];
-// // console.log("Spread Combined:", spreadCombined); // [1,2,99,4,5,6,7]
+  // freeze demo (uncomment to make object immutable)
+  // Object.freeze(user);
 
-// // // ✅ flat() – flattens nested arrays
-// // const nested = [1, 2, [3, 4], [5, [6]]];
-// // console.log("Flat(1):", nested.flat(1)); // [1,2,3,4,5,[6]]
-// // console.log("Flat(2):", nested.flat(2)); // [1,2,3,4,5,6]
+  user.age = 30; // succeeds unless frozen
+  console.log("User object:", user);
+})();
 
-// // // ✅ Array.isArray() – checks if variable is array
-// // console.log("Is Array?", Array.isArray(arr)); // true
+/* -------------------------------------------------
+   3. NESTED OBJECTS & MERGING
+------------------------------------------------- */
+(() => {
+  const MAYUR = {
+    name: "Mayur Lomate",
+    email: "mayur@gmail.com",
+    more_info: {
+      first: "Mayur",
+      last: "Lomate",
+    },
+  };
 
-// // // ✅ Array.from() – converts iterable or array-like to array
-// // const str = "Mayur";
-// // const fromStr = Array.from(str);
-// // console.log("Array from string:", fromStr); // ['M','a','y','u','r']
+  const College = {
+    clg_name: "D.Y.Patil",
+    location: "Pimpri",
+  };
 
-// // // ✅ Array.of() – creates new array from arguments
-// // const ofArray = Array.of(10, 20, 30);
-// // console.log("Array.of(10,20,30):", ofArray); // [10,20,30]
+  // merge using spread
+  const info = { ...MAYUR, ...College };
+  console.log("Merged object:", info);
 
+  // keys / values / entries
+  console.log("College keys:", Object.keys(College));
+  console.log("College values:", Object.values(College));
+  console.log("College entries:", Object.entries(College));
 
-// // Objects  - key : value pair 
-// //creation : 
-// // to use symbol in object we need to use [] to use a symbol 
-// //ex.
-// //PART - 1 
-// const mysym = Symbol("Key1")
-// const Obj = {
-//     name : "Mayur",
-//     age : 22 , 
-//     [mysym] : "new_Symbol",
-//     Location : "Nagar",
-//     LogIn_Status : "Active"
-// } 
-// //access - 2 way
-// // console.log(Obj.Location);
-// // console.log(Obj["Location"]);
-// // console.log(Obj[mysym]);
+  // hasOwnProperty
+  console.log("Has location?", College.hasOwnProperty("location"));
+})();
 
-// //change in value
-// Obj.Location = "Pune"
-// Obj.LogIn_Status = "Inactive"
+/* -------------------------------------------------
+   4. FUNCTION PATTERNS (REST, PARAMS, ETC.)
+------------------------------------------------- */
+(() => {
+  // regular function
+  function completion(username) {
+    console.log(`Good Morning, ${username}`);
+    return "Welcome To VS Code";
+  }
+  completion("Mayur");
 
-// // if u want to freeze any key then there is no change it means making it constant
+  // rest parameters
+  function call(...vals) {
+    console.log("Values passed:", vals);
+  }
+  call(100, 200, 300, 400);
 
-// //before 
-// Obj.age = 30
-// // Object.freeze(Obj)
-// Obj.age = 40
-// // console.log(Obj.age)
+  // object param with destructuring
+  const person = { fullName: "Mayur Lomate", age: 22 };
+  function information({ fullName, age }) {
+    console.log(`Full Name: ${fullName}, Age: ${age}`);
+  }
+  information(person);
 
-// //adding function to the object
-// Obj.func = function(){
-//     console.log("Good Morning");
-    
-// }
-// // console.log(Obj); 
+  // array param
+  const newArr = [100, 200, 300, 400];
+  function arrpass(arr) {
+    console.log(`Array values: ${arr}`);
+  }
+  arrpass(newArr);
+})();
 
+/* -------------------------------------------------
+   5. ARROW VS. REGULAR FUNCTIONS & `this`
+------------------------------------------------- */
+(() => {
+  // regular function (its own `this`)
+  function chai() {
+    console.log("Inside chai(), this =", this);
+  }
+  chai();
 
-// //PART -2 
-// //object inside object 
-// const MAYUR = {
-//     name : "mayur Lomate",
-//     email : "mayur@gmail.com",
-//     more_info : {
-//         first : "mayur",
-//         last : "Lomate"
-//     }
-// }
+  // anonymous function expression
+  const hello = function () {
+    console.log("This is second way to declare the function");
+  };
+  hello();
 
-// //console.log(MAYUR);
-// const College = {
-//     clg_name : "D.Y.Patil",
-//     Location : "pimpri"
-// }
+  // arrow function
+  const funcon = () => {
+    console.log("Good Morning from arrow function");
+  };
+  funcon();
 
-// //combining two objects - assign()
-// //spread operator
-// const info = {...MAYUR , ...College}
-// console.log(info);
-
-// //access keys and value seperately - .keys , .values , .entries
-// console.log(Object.keys(College));
-// console.log(Object.values(College));
-// console.log(Object.entries(College));
-
-
-// //obj.hasOwnProperty
-// console.log(College.hasOwnProperty("Location"));
-
-// //PART-3
-// //Destructuring the object
-
-
-// // Function 
-
-// //creation
-// function  Completion(Username){
-//     console.log(`Good Morning , ${Username}`);
-//     return "Welcome To VS code "
-// }
-// //execution 
-// Completion("Mayur")
-// //reference
-// Completion
-
-//rest operator - wrapping all parameters
-function call(...val1){
-    console.log(`values passed as a parameter ${val1}`);
-    
-}
-call(100,200,300,400)
-//passing an object inside the function as a parameter
-const objec = { 
-    fullName : "Mayur Lomate",
-    age : 22
-}
-
-function information(objex){
-    console.log(`the values inside the object is ${objec.fullName}`);
-    
-}
-information(objec)
-//passing an array inside the function as a parameter
-
-const newArr  = [100 ,200 ,300,400]
-
-function arrpass (Array_1){
-    console.log(`the values inside the array is ${newArr}`);
-    
-}
-arrpass(newArr)
-
-// Arrow Function 
-//this keyword is used to refer a current context
-// Ways to declare the functions : 
-// Way : 1 
-function chai(){
-    console.log(this);
-    
-}
-chai()
-// Way : 2 storing function in  a variable 
-const Hello = function(){
-    console.log(`this is second way to declare the function`);
-
-}
-// Way : 3  Arrow Function
-// basic
-const funcon = () =>{
-    console.log("Good Morning");
-    
-}
-// impicit way - no need to use return keyword , used in react
-const way2 = () =>( console.log("good morning"));
-
-funcon()
-way2()
-
-
+  // implicit-return arrow function
+  const way2 = () => console.log("Good morning (implicit)");
+  way2();
+})();
