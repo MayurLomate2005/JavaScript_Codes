@@ -182,8 +182,30 @@ function arrpass (Array_1){
 }
 arrpass(newArr)
 
+// Arrow Function 
+//this keyword is used to refer a current context
+// Ways to declare the functions : 
+// Way : 1 
+function chai(){
+    console.log(this);
+    
+}
+chai()
+// Way : 2 storing function in  a variable 
+const Hello = function(){
+    console.log(`this is second way to declare the function`);
 
+}
+// Way : 3  Arrow Function
+// basic
+const funcon = () =>{
+    console.log("Good Morning");
+    
+}
+// impicit way - no need to use return keyword , used in react
+const way2 = () =>( console.log("good morning"));
 
-
+funcon()
+way2()
 
 
