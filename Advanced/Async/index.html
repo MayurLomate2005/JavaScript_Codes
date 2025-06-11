@@ -1,0 +1,47 @@
+//setTimeout()
+//clearTimeout()
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <h1>Async Project for start and stopping the setInterval</h1>
+    <button id="start">
+        Start
+    </button>
+    <button id="stop">
+        Stop
+    </button>
+    
+</body>
+<script>
+    const button1 = document.querySelector("#start")
+    const button2 = document.querySelector("#stop")
+
+
+    const start_time = function(){
+
+        console.log("Timer is Started")
+    }
+
+    // button1.addEventListener(start_time)
+
+    // button2.addEventListener(stopping)
+
+
+    const inter = setInterval(start_time,5000)
+
+    const stopping = clearInterval(inter)
+
+     button1.addEventListener(start_time)
+
+    button2.addEventListener(stopping)
+
+
+
+
+</script>
+</html>
