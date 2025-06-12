@@ -1,0 +1,52 @@
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <h1>Async Project for start and stopping the setInterval</h1>
+    <button id="start">
+        Start
+    </button>
+    <button id="stop">
+        Stop
+    </button>
+    
+</body>
+<script>
+    const button1 = document.querySelector("#start")
+    const button2 = document.querySelector("#stop")
+
+    let IntervalID ;
+
+
+    const start_time = function(){
+
+        console.log("Timer is Started")
+    }
+
+    button1.addEventListener("click",() => {
+        if(!IntervalID){
+            setInterval(start_time,2000)
+        }
+
+    });
+
+
+    button2.addEventListener("click",() => {
+        clearInterval(IntervalID);
+        console.log("Timer is Stopped");
+       // IntervalID = null;
+    
+    });
+
+
+
+
+
+
+</script>
+</html>

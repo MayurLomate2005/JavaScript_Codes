@@ -1,0 +1,95 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+
+    <div class="Friends">
+        <ul>
+            <li>Mayur</li>
+        </ul>
+    </div>
+    
+</body>
+<script>
+
+    const li = document.querySelector(".Friends");
+    console.log(li);
+    const ul = document.querySelector("ul")
+    console.log(ul);
+    ul.className = "LIST"
+    ul.style.color = "blue"
+    ul.style.backgroundColor = "white"
+
+
+    // ways to add element in the list by using function 
+    // Way : 1
+        function addEle (friend_Name){
+        const list = document.createElement("li")
+        list.innerHTML = `${friend_Name}`
+        ul.appendChild(list)
+
+    }
+    addEle("Sejal")
+    addEle("mayur Kamble")
+    addEle("Varad")
+    addEle("Vaishnavi")
+
+    // Way : 2
+    function optiway(friend_Name){
+        const li = document.createElement("li")
+        li.appendChild(document.createTextNode(friend_Name))
+        ul.appendChild(li)
+
+    }
+    optiway("ayush")
+    optiway("rahul")
+
+    //edit the names of list
+    // Way : 1
+
+    const Change = document.querySelector("li:nth-child(3)")
+    Change.innerHTML = "pratik"
+    //Change.outerHTML = "<li> Hello Guys </li>" - due to outerhtml further changes in this list is not done
+
+
+    //Way : 2
+    const Change2 = document.createElement("li")
+    Change2.textContent = "APPA SAHEB"
+    Change.replaceWith(Change2)
+
+    //removal of the list item
+    const remove = document.querySelector("li:nth-child(5)")
+    remove.remove()
+    const remove2 = document.querySelector("li:first-child")
+    remove2.remove()
+
+    // to access 1st element - "li:first-child"
+     //to access lasst element - "li:last-child"
+     // to access nth element - "li:nth-child(nth element)"
+
+
+
+
+
+
+
+
+
+
+
+    
+
+    
+
+    
+
+
+
+
+
+</script>
+</html>

@@ -1,0 +1,46 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+
+    <h1>Click Me , I can Change my Color !</h1>
+    <button id="start">Start</button>
+    <button id="stop">Stop</button>
+    
+</body>
+<script>
+    const start = document.querySelector("#start");
+    const stop = document.querySelector("#stop");
+
+    const body = document.querySelector("body");
+
+    const random = Math.floor(Math.random()*16)
+
+    console.log("random no generated : ",random);
+    
+
+    const interID =  function colorchange(){
+        const hex = "0123456789ABCDEF";
+        const color = "#";
+        for(let i = 0 ; i < 9 ; i++){
+            color+=hex[random]
+        }
+        console.log("color Code is -",color);
+        
+
+        return color;
+    }
+
+
+   // const random = Math.floor(Math.random()*16)
+    
+    
+
+
+
+</script>
+</html>
