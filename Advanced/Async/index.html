@@ -1,0 +1,65 @@
+//setTimeout()
+//clearTimeout()
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <h1>Async Project for start and stopping the setInterval</h1>
+    <button id="start">
+        Start
+    </button>
+    <button id="stop">
+        Stop
+    </button>
+    
+</body>
+<script>
+
+    //setTimeout and clearout
+    const printing = function print (){
+        console.log("the time is over");
+        
+    }
+    const clearit =  setTimeout(printing,2000);
+
+    setTimeout(()=>{
+        clearTimeout(clearit)
+        console.log("The clearout Done");
+        
+    },5000)
+
+
+    //setInterval and clearInterval
+    let valid
+    let msg = "the time is over"
+
+    const setting = function sett() {
+        console.log("Welcome To mayur Industry");
+
+    }
+
+    const button1 = document.querySelector("#start")
+    const button2 = document.querySelector("#stop")
+
+    button1.addEventListener("click",()=>{
+        valid =  setInterval(setting,2000)
+    })
+
+    button2.addEventListener("click",()=>{
+        clearInterval(valid)
+        console.log(msg);
+        
+    })
+
+
+   
+
+
+
+
+</script>
+</html>
