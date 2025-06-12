@@ -1,0 +1,54 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Pro Color Changer</title>
+</head>
+<body>
+
+  <h1>Can U Click Me! So I Can Change My Colour</h1>
+  <button id="change">Change Me</button>
+  <button id="stop">Stop Me</button>
+
+</body>
+<script>
+  const changeBtn = document.querySelector("#change");
+  const stopBtn = document.querySelector("#stop");
+  const body = document.querySelector("body");
+
+  let intervalId = null;
+
+  function randomColorgenerate() {
+    let hex = "0123456789ABCDEF";
+    let color = "#";
+    for (let i = 0; i < 6; i++) {
+      color += hex[Math.floor(Math.random() * 16)];
+    }
+    console.log("The color code is", color);
+    return color;
+  }
+
+  // One-time color change on click
+  changeBtn.addEventListener("click", () => {
+    const newColor = randomColorgenerate();
+    body.style.backgroundColor = newColor;
+  });
+
+  // Auto color change starts when Change Me is held or clicked multiple times
+  changeBtn.addEventListener("dblclick", () => {
+    if (intervalId !== null) clearInterval(intervalId);
+    intervalId = setInterval(() => {
+      const newColor = randomColorgenerate();
+      body.style.backgroundColor = newColor;
+    }, 1000);
+  });
+
+  // Stop auto change
+  stopBtn.addEventListener("click", () => {
+    clearInterval(intervalId);
+    intervalId = null;
+    console.log("Stopped changing colors");
+  });
+</script>
+</html>
