@@ -1,0 +1,42 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Card</title>
+</head>
+<body>
+
+    <h1>Click the button to retrieve data</h1>
+    <button id="click">Click Me!</button>
+    <div id="output"></div>
+
+    <script>
+        const requestUrl = "https://api.github.com/users/MayurLomate2005";
+        const button = document.querySelector("#click");
+        const output = document.getElementById("output");
+
+        button.addEventListener("click", () => {
+            const request = new XMLHttpRequest();
+            request.open('GET', requestUrl, true);
+
+            request.onreadystatechange = function () {
+                if (request.readyState === 4 && request.status === 200) {
+                    const Data = JSON.parse(this.responseText);
+                    const area = document.createElement("div");
+                    area.innerHTML = `
+                        <p><strong>Username:</strong> ${Data.login}</p>
+                        <p><strong>Created At:</strong> ${Data.created_at}</p>
+                        <img src="${Data.avatar_url}" width="150" alt="User Avatar"/>
+                    `;
+                    output.appendChild(area);
+                    console.log("Data loaded successfully.");
+                }
+            };
+
+            request.send();
+        });
+    </script>
+
+</body>
+</html>
